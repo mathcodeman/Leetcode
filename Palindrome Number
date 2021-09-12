@@ -1,0 +1,19 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        elif x%10 == 0 and x != 0:
+            return False
+        else:
+            invertNum = 0
+            multipiler = 10
+            while invertNum < x:
+                digit = x % 10
+                x = x//10
+                invertNum = invertNum * multipiler + digit
+            if invertNum == x:
+                return True
+            elif x == invertNum//10:
+                return True
+            else:
+                return False

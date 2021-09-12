@@ -1,0 +1,31 @@
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        s = s[::-1]
+        Symbol = ["I", "V", "X", "L", "C", "D", "M"]
+        Value = ["1", "5", "10", "50", "100", "500", "1000"]
+        pt1,pt2 = 0,0
+        dic = {}
+        while pt1 < 7 and pt2 < 7:
+            dic[Symbol[pt1]] = Value[pt2]
+            pt1 += 1
+            pt2 += 1
+        res = 0 
+        for i in range(len(s)):
+            if i > 0 and s[i] == 'I':
+                if s[i-1] == 'V' or s[i-1] == 'X':
+                    res -= 1
+                else:
+                    res += int(dic.get(s[i]))
+            elif i > 0 and s[i] == 'X':
+                if s[i-1] == 'L' or s[i-1] == 'C':
+                    res -= 10
+                else:
+                    res += int(dic.get(s[i]))
+            elif i > 0 and s[i] == 'C':
+                if s[i-1] == 'D' or s[i-1] == 'M':
+                    res -= 100
+                else:
+                    res += int(dic.get(s[i]))
+            else:
+                res += int(dic.get(s[i]))
+        return res

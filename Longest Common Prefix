@@ -1,0 +1,19 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        def findCommon(str1,str2):
+            pt1,pt2 = 0,0
+            commonPart = ""
+            while pt1 < len(str1) and pt2 < len(str2):
+                if str1[pt1] == str2[pt2]:
+                    commonPart += str1[pt1]
+                    pt1 += 1
+                    pt2 += 1
+                else:
+                    break
+            return commonPart
+        
+        common = strs[0]
+        for i in range(len(strs)-1):
+            common = findCommon(common,strs[i+1])
+            
+        return common

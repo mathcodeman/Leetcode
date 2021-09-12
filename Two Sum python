@@ -1,0 +1,21 @@
+class Solution:
+#Binary Search
+#Time: O(logN)
+#Space: O(1)
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num = sorted(list(enumerate(nums)), key = lambda item:item[1])
+        lo = 0
+        hi = len(num) - 1
+        res = []
+        while lo < hi:
+            if num[lo][1] + num[hi][1] > target:
+                mi = int((lo + hi) / 2)
+                hi = mi
+            elif num[lo][1] + num[hi][1] < target:
+                mi = int((lo + hi) / 2)
+                lo = mi
+            else:
+                res.append(num[hi][0])
+                res.append(num[lo][0])
+                break
+        return sorted(res)

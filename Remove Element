@@ -1,0 +1,21 @@
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        k = len(nums)
+        c = 0
+        pt = 0
+        while pt < len(nums):
+            if nums[pt] == val:
+                nums.remove(nums[pt])
+                k -= 1
+                c += 1
+            else:
+                pt += 1
+        
+        for i in range(c):
+            nums.append('_')
+        
+        return k
+    
+    #Remove all the int == val by using while loop.
+    #Append back the removed numbers of '_' back to nums.
+    #Time: O(N) Space: O(1)

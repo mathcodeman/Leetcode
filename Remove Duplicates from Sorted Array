@@ -1,0 +1,26 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        pt1,pt2 = 0,1
+        k = len(nums)
+        while pt2 < len(nums):
+            if nums[pt1] == nums[pt2]:
+                nums[pt2] = '_'
+                pt2 += 1
+                k -= 1
+            elif nums[pt1] < nums[pt2]:
+                pt1 = pt2
+                pt2 += 1
+
+        pt3 = 0
+        c = 0
+        while pt3 < len(nums):
+            if nums[pt3] == '_':
+                nums.remove(nums[pt3])
+                c += 1
+            else:
+                pt3 += 1
+
+        for i in range(c):
+            nums.append('_')
+        
+        return k

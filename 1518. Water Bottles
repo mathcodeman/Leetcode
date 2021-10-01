@@ -1,0 +1,11 @@
+class Solution:
+    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
+        total = numBottles
+        current = numBottles
+        
+        while current >= numExchange:
+            exchanged = current//numExchange
+            remainder = current%numExchange
+            current = exchanged + remainder
+            total += exchanged
+        return total

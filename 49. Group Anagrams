@@ -1,0 +1,17 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        check = {}
+        res = []
+        for word in strs:
+            key_word = sorted(word)
+            key_word = str(key_word)
+            if key_word in check:
+                check[key_word].append(word)
+            else:
+                check[key_word] = []
+                check[key_word].append(word)
+        
+        for k,v in check.items():
+            res.append(v)
+        
+        return res
